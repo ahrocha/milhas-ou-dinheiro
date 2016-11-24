@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="comparadorApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Milhas ou Dinheiro?</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="comparadorApp.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+  </head>
+  <body>
+
+    <div ng-controller="smilesCtrl">
+      <table>
+        <tr>
+<td colspan="3">
+  <div style="text-align: center">
+    <h3>SMILES <button>calcular</button></h3>
+    <label>Preço de 1 mil pontos:</label>
+    <input type="number" ng-model="precoMilhas" placeholder="Escreva somente numeros. Ex.: se for R$35, escreva somente 35">
+</div>
+</td>
+        </tr>
+
+        <tr>
+          <td class="m">zero milhas, só dinheiro</td>
+          <td><input type="number" ng-model="preco" placeholder="Em reais"></td>
+          <td class="p" id="psD">R${{preco}}</td>
+        </tr>
+
+          <tr>
+            <td class="m">só milhas, zero dinheiro</td>
+            <td><input type="number" ng-model="pontos" placeholder="Em múltiplos de 1000"></td>
+            <td class="p" id="psM">R${{pontos * precoMilhas}}</td>
+          </tr>
+            <tr><th colspan="3">Pontos mais milhas</th>
+          </tr>
+          <tr>
+            <th>x mil milhas</th>
+            <th>+ reais</th>
+            <th>Preço final</th>
+          </tr>
+          <tr>
+            <td><input type="number" ng-model="pontosA" placeholder="Em múltiplos de 1000"></td>
+            <td><input type="number" ng-model="precoA" placeholder="Em reais"></td>
+            <td class="p" id="psA">R${{pontosA * precoMilhas + precoA}}</td>
+          </tr>
+          <tr>
+            <td><input type="number" ng-model="pontosB" placeholder="Em múltiplos de 1000"></td>
+            <td><input type="number" ng-model="precoB" placeholder="Em reais"></td>
+            <td class="p" id="psB">R${{pontosB * precoMilhas + precoB}}</td>
+          </tr>
+            <tr>
+              <td><input type="number" ng-model="pontosC" placeholder="Em múltiplos de 1000"></td>
+              <td><input type="number" ng-model="precoC" placeholder="Em reais"></td>
+              <td class="p" id="psC">R${{pontosC * precoMilhas + precoC}}</td>
+            </tr>
+      </table>
+    </div>
+
+
+      <div ng-controller="multiplusCtrl">
+        <table>
+          <tr>
+    <td colspan="3">
+    <div style="text-align: center">
+      <h3>MULTIPLUS <button>calcular</button></h3>
+      <label>Preço de 1 mil pontos:</label>
+      <input type="number" ng-model="precoMilhas" placeholder="Escreva somente numeros. Ex.: se for R$28, escreva somente 28">
+    </div>
+    </td>
+          </tr>
+          <tr>
+            <td class="m">zero milhas, só dinheiro</td>
+            <td><input type="number" ng-model="preco" placeholder="Em reais"></td>
+            <td class="p" id="pmD">R${{preco}}</td>
+          </tr>
+
+            <tr>
+              <td class="m">só milhas, zero dinheiro</td>
+              <td><input type="number" ng-model="pontos" placeholder="Em múltiplos de 1000"></td>
+              <td class="p" id="pmM">R${{pontos * precoMilhas}}</td>
+            </tr>
+              <tr><th colspan="3">Pontos mais milhas</th>
+            </tr>
+            <tr>
+              <th>x mil milhas</th>
+              <th>+ reais</th>
+              <th>Preço final</th>
+            </tr>
+            <tr>
+              <td><input type="number" ng-model="pontosA" placeholder="Em múltiplos de 1000"></td>
+              <td><input type="number" ng-model="precoA" placeholder="Em reais"></td>
+              <td class="p" id="pmA">R${{pontosA * precoMilhas + precoA}}</td>
+            </tr>
+            <tr>
+              <td><input type="number" ng-model="pontosB" placeholder="Em múltiplos de 1000"></td>
+              <td><input type="number" ng-model="precoB" placeholder="Em reais"></td>
+              <td class="p" id="pmB">R${{pontosB * precoMilhas + precoB}}</td>
+            </tr>
+              <tr>
+                <td><input type="number" ng-model="pontosC" placeholder="Em múltiplos de 1000"></td>
+                <td><input type="number" ng-model="precoC" placeholder="Em reais"></td>
+                <td class="p" id="pmC">R${{pontosC * precoMilhas + precoC}}</td>
+              </tr>
+        </table>
+      </div>
+  </body>
+<script>
+
+function calcula(){
+
+
+
+    $('.p').css("background-color","#ffffff");
+    var valor = 99999;
+    var indice = 99999;
+    $( ".p" ).each(function( index ) {
+      var preco = $( this ).text() ;
+      preco = preco.replace("R$", "");
+      if (preco < valor){
+        valor = preco;
+        indice = index;
+      }
+    });
+    console.log(valor);
+    console.log(indice);
+    var item = $('.p')[indice].id ;
+    $("#" + item).css("background-color","#ffffff");
+}
+
+</script>
+
+</html>
